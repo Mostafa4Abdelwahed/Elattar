@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Tajawal as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
-
 import "./globals.css";
-
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -13,7 +11,7 @@ import { mainMenu, contentMenu } from "@/menu.config";
 import { Section, Container } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 
-import Logo from "@/public/logo.svg";
+import Logo from "@/assets/logo.png";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -21,15 +19,14 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const fontSans = FontSans({
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "WordPress & Next.js Starter by 9d8",
-  description:
-    "A starter template for Next.js with WordPress as a headless CMS.",
-  metadataBase: new URL("https://wp.9d8.dev"),
+  title: "دكتور احمد العطار استشاري جراحة العظام",
+  description: "دكتور العطار استشاري العظام و العمود الفقري",
 };
 
 // Revalidate content every hour
@@ -41,9 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ar" suppressHydrationWarning>
       <head />
       <body
+        dir="rtl"
         className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
         <ThemeProvider
@@ -66,7 +64,7 @@ const Nav = ({ className, children, id }: NavProps) => {
   return (
     <nav
       className={cn(
-        "sticky z-50 top-0 bg-background",
+        "sticky z-[999] top-0 bg-background",
         "border-b",
         "fade-in",
         className
@@ -75,13 +73,13 @@ const Nav = ({ className, children, id }: NavProps) => {
     >
       <div
         id="nav-container"
-        className="max-w-5xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
+        className="max-w-7xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
       >
         <Link
           className="hover:opacity-75 transition-all flex gap-2 items-center"
           href="/"
         >
-          <h2 className="sr-only">next-wp starter</h2>
+          <h2 className="sr-only">دكتور احمد العطار</h2>
           <Image
             src={Logo}
             alt="Logo"
@@ -89,6 +87,7 @@ const Nav = ({ className, children, id }: NavProps) => {
             width={42}
             height={26.44}
           ></Image>
+          <h1 className="text-xl">دكتور احمد العطار</h1>
         </Link>
         {children}
         <div className="flex items-center gap-2">
@@ -101,8 +100,11 @@ const Nav = ({ className, children, id }: NavProps) => {
               </Button>
             ))}
           </div>
-          <Button asChild className="hidden sm:flex">
-            <Link href="https://github.com/9d8dev/next-wp">Get Started</Link>
+          <Button
+            asChild
+            className="hidden !bg-main hover:bg-main sm:flex"
+          >
+            <Link href="https://github.com/9d8dev/next-wp">احجز موعد</Link>
           </Button>
           <MobileNav />
         </div>
@@ -113,7 +115,7 @@ const Nav = ({ className, children, id }: NavProps) => {
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="border-t">
       <Section>
         <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
           <div className="flex flex-col gap-6 not-prose">
@@ -127,12 +129,19 @@ const Footer = () => {
                 height={26.44}
               ></Image>
             </Link>
-            <p>
-              <Balancer>Next.js meets headless WordPress</Balancer>
+            <p className="w-3/4">
+              <Balancer>
+                دكتور العطار هو استشاري متخصص في علاج مشاكل العظام والعمود
+                الفقري، حيث يقدم استشارات طبية متخصصة في تشخيص وعلاج الأمراض
+                والإصابات المتعلقة بالعظام والمفاصل والعمود الفقري، ويعمل على
+                تقديم حلول علاجية فعّالة للمشاكل الصحية التي قد تؤثر على الحركة
+                والراحة الجسدية، ويعتمد في عمله على أحدث التقنيات الطبية والبحث
+                العلمي لضمان أفضل النتائج للمرضى.
+              </Balancer>
             </p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
-            <h5 className="font-medium text-base">Website</h5>
+            <h5 className="font-medium text-base">الصفحات</h5>
             {Object.entries(mainMenu).map(([key, href]) => (
               <Link
                 className="hover:underline underline-offset-4"
@@ -144,7 +153,7 @@ const Footer = () => {
             ))}
           </div>
           <div className="flex flex-col gap-2 text-sm">
-            <h5 className="font-medium text-base">Blog</h5>
+            <h5 className="font-medium text-base">روابط سريعة</h5>
             {Object.entries(contentMenu).map(([key, href]) => (
               <Link
                 className="hover:underline underline-offset-4"
@@ -156,13 +165,13 @@ const Footer = () => {
             ))}
           </div>
         </Container>
-        <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
+        {/* <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
           <ThemeToggle />
           <p className="text-muted-foreground">
             © <a href="https://9d8.dev">9d8</a>. All rights reserved.
             2024-present.
           </p>
-        </Container>
+        </Container> */}
       </Section>
     </footer>
   );

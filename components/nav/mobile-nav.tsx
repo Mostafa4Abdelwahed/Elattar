@@ -31,29 +31,29 @@ export function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="pr-0">
-        <MobileLink
+      <SheetContent dir="rtl" side="right" className="pl-0">
+        {/* <MobileLink
           href="/"
           className="flex items-center"
           onOpenChange={setOpen}
         >
-          <ArrowRightSquare className="mr-2 h-4 w-4" />
-          <span className="text-muted-foreground">My Site</span>
-        </MobileLink>
+          <ArrowRightSquare className="ml-2 h-4 w-4" />
+          <span className="text-muted-foreground">الموقع</span>
+        </MobileLink> */}
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            <h3 className="text-small mt-6">Menu</h3>
-            <Separator />
-            {Object.entries(mainMenu).map(([key, href]) => (
-              <MobileLink key={key} href={href} onOpenChange={setOpen}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}
+            {/* <h3 className="text-small mt-6 ml-auto">Menu</h3> */}
+            {/* <Separator /> */}
+            {/* {Object.entries(mainMenu).map(([key, href]) => (
+              <MobileLink className="ml-auto" key={key} href={href} onOpenChange={setOpen}>
+                {key}
               </MobileLink>
-            ))}
-            <h3 className="text-small pt-6">Blog Menu</h3>
+            ))} */}
+            <h3 className="text-small pt-6 ml-auto">روابط سريعة</h3>
             <Separator />
             {Object.entries(contentMenu).map(([key, href]) => (
-              <MobileLink key={key} href={href} onOpenChange={setOpen}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}
+              <MobileLink className="ml-auto" key={key} href={href} onOpenChange={setOpen}>
+                {key}
               </MobileLink>
             ))}
           </div>

@@ -130,3 +130,26 @@
     opacity: 1;
   }
 }
+
+.swiper-button-next {
+  background: white;
+  border: 1px solid #f1f1f1;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 100%;
+  /* right: -14px !important; */
+}
+
+.swiper-button-prev{
+  background: white;
+  border: 1px solid #f1f1f1;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 100%;
+  /* left: -14px !important; */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{
+  font-size: 18px !important;
+}
